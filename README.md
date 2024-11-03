@@ -45,6 +45,16 @@ Para rodar a aplicação, siga estas etapas:
      mvn exec:java -Dexec.mainClass="nome.do.pacote.da.classe.Principal"
      ```
 
+      - **Acesse o link:**
+
+     ```bash
+     localHost:8080/login
+     ```
+  
+- para realizar o primeiro acesso favor acessar com os seguinte usuario e senha:
+-   usuario: admin | senha: admin
+  
+
 ## Documentação
 
 [DOC](https://github.com/VikitorXD/MEDCONNECT/blob/main/documents/MedConnect_2tdspv.pdf)
