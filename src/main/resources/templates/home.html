@@ -1,17 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Compras e Indicações de Produtos Farmacêuticos</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+        .info {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-<div layout:fragment="conteudo">
+<div class="header">
+    <h1>SISTEMA DE COMPRAS E INDICAÇÕES DE PRODUTOS FARMACÊUTICOS</h1>
+</div>
 
-    <a th:href="@{/calculadora/media}">Calculadora</a>
-    <a th:href="@{/produto/cadastrar}">Cadastro Produto</a>
+<div layout:fragment="conteudo" class="content">
+    <div class="container">
+        <h2>Bem-vindo à nossa plataforma!</h2>
+        <p class="info">
+            Somos uma plataforma especializada na venda de produtos farmacêuticos e medicamentos,
+            comprometida em proporcionar aos nossos clientes uma experiência única e personalizada.
+        </p>
+        <p class="info">
+            Nosso diferencial é a aplicação de inteligência artificial (IA) para recomendar produtos com
+            base no histórico de compras de cada cliente.
+        </p>
+        <p class="info">
+            Através da IA, analisamos padrões de compra, preferências e necessidades individuais,
+            permitindo-nos oferecer sugestões precisas e relevantes. Essa abordagem personalizada
+            garante que cada recomendação seja adaptada ao perfil único de cada cliente, tornando a
+            experiência de compra mais eficiente e satisfatória.
+        </p>
+        <p class="info">
+            Além disso, nossa plataforma está sempre evoluindo, aprendendo com cada interação para
+            aprimorar continuamente nossas recomendações. Estamos aqui para simplificar sua busca
+            por produtos farmacêuticos, oferecendo conveniência e confiança em cada compra.
+        </p>
+    </div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

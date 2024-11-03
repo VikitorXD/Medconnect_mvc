@@ -21,31 +21,31 @@ public class ProdutoController {
 
     @GetMapping("cadastrar")
     public String cadastrar(Produto prod, Model model) {
-        return "produto/cadastrar"; // Retorna a view de cadastro
+        return "produto/cadastrar";
     }
 
     @PostMapping("cadastrar")
     public String cadastroProduto(@Valid Produto prod, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            return "produto/cadastrar"; // Retorna à página de cadastro se houver erro
+            return "produto/cadastrar";
         }
         produtoRepository.save(prod);
         redirectAttributes.addFlashAttribute("mensagem", "SEU PRODUTO FOI CADASTRADO!");
-        return "redirect:/produto/listar"; // Redireciona para a lista de produtos após cadastro
+        return "redirect:/produto/listar";
     }
 
-    @GetMapping("editar/{id}") // Corrigido o mapeamento
+    @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto inválido: " + id));
         model.addAttribute("produto", produto);
-        return "produto/editar"; // Retorna a view de edição
+        return "produto/editar";
     }
 
-    @PostMapping("editar") // Corrigido o mapeamento
+    @PostMapping("editar")
     public String editarProduto(@ModelAttribute Produto produto) {
-        produtoRepository.save(produto); // Salva o produto atualizado
-        return "redirect:/produto/listar"; // Redireciona para a lista de produtos
+        produtoRepository.save(produto);
+        return "redirect:/produto/listar";
     }
 
     @PostMapping("remover")
@@ -53,12 +53,12 @@ public class ProdutoController {
     public String remover(Long codigo, RedirectAttributes redirectAttributes) {
         produtoRepository.deleteById(codigo);
         redirectAttributes.addFlashAttribute("mensagem", "Produto removido com sucesso!");
-        return "redirect:/produto/listar"; // Redireciona para a lista após remoção
+        return "redirect:/produto/listar";
     }
 
     @GetMapping("listar")
     public String listarProdutos(Model model) {
         model.addAttribute("produtos", produtoRepository.findAll());
-        return "produto/listar"; // Retorna a view de listagem
+        return "produto/listar";
     }
 }

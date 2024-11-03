@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-
 @Entity
 @Table(name="t_mdct_cliente")
 @EntityListeners(AuditingEntityListener.class)
@@ -35,11 +33,7 @@ public class Cliente {
     @Column(name="ds_email", length = 80)
     private String email;
 
-    @Column(name="dt_nascimento")
-    private LocalDate dataNascimento;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco_cliente", referencedColumnName = "id_endereco_cliente")
     private Endereco endereco;
-
 }

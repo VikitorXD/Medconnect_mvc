@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+</head>
+<body>
+<div>
+    <h1>Editar Cliente</h1>
+    <div class="alert alert-success" th:if="${#strings.isEmpty(mensagem)}" th:text="${mensagem}"></div>
+    <form th:action="@{/cliente/editar}" th:object="${cliente}" method="post">
+        <input type="hidden" th:field="*{idCliente}"/>
+
+        <!-- Dados do Cliente -->
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" th:field="*{nome}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" th:field="*{cpf}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="rg" class="form-label">RG</label>
+            <input type="text" th:field="*{rg}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input type="date" th:field="*{dataNascimento}" class="form-control" required/>
+        </div>
+
+        <!-- Dados do Endereço -->
+        <h2>Endereço</h2>
+
+        <div class="mb-3">
+            <label for="numeroLogradouro" class="form-label">Número do Logradouro</label>
+            <input type="number" th:field="*{endereco.numeroLogradouro}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="complementoNumero" class="form-label">Complemento</label>
+            <input type="text" th:field="*{endereco.complementoNumero}" class="form-control"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomeBairro" class="form-label">Bairro</label>
+            <input type="text" th:field="*{endereco.nomeBairro}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="zona" class="form-label">Zona</label>
+            <input type="text" th:field="*{endereco.zona}" class="form-control"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomeCidade" class="form-label">Cidade</label>
+            <input type="text" th:field="*{endereco.nomeCidade}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="sigla" class="form-label">Sigla do Estado</label>
+            <input type="text" th:field="*{endereco.sigla}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomeEstado" class="form-label">Nome do Estado</label>
+            <input type="text" th:field="*{endereco.nomeEstado}" class="form-control"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomeLogradouro" class="form-label">Logradouro</label>
+            <input type="text" th:field="*{endereco.nomeLogradouro}" class="form-control" required/>
+        </div>
+
+        <div class="mb-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" th:field="*{endereco.cep}" class="form-control" required/>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a th:href="@{/cliente/listar}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

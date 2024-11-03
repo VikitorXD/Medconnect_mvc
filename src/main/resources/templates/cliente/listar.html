@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Clientes</h1>
+
+    <!-- Mensagem de feedback -->
+    <div class="alert alert-success"
+         th:if="${mensagem != null and !#strings.isEmpty(mensagem)}"
+         th:text="${mensagem}"></div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.cpf}"></td>
+            <td th:text="${cliente.rg}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td>
+                <div th:if="${cliente.endereco != null}">
+                    <p th:text="'Logradouro: ' + ${cliente.endereco.nomeLogradouro}"></p>
+                    <p th:text="'Número: ' + ${cliente.endereco.numeroLogradouro}"></p>
+                    <p th:text="'Complemento: ' + ${cliente.endereco.complementoNumero}"></p>
+                    <p th:text="'Bairro: ' + ${cliente.endereco.nomeBairro}"></p>
+                    <p th:text="'Cidade: ' + ${cliente.endereco.nomeCidade} + ' - ' + ${cliente.endereco.sigla}"></p>
+                    <p th:text="'CEP: ' + ${cliente.endereco.cep}"></p>
+                </div>
+            </td>
+            <td>
+                <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-outline-primary">Editar</a>
+                <button th:onclick="|clienteId.value = ${cliente.idCliente}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/cliente/cadastrar}" class="btn btn-success">Cadastrar Novo Cliente</a>
+
+    <!-- Modal para confirmação de remoção -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o cliente?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/cliente/remover}" method="post">
+                        <input type="hidden" name="idCliente" id="clienteId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

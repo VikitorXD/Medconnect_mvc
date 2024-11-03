@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Cliente</h1>
+    <div class="alert alert-success" th:if="${mensagem != null && !#strings.isEmpty(mensagem)}" th:text="${mensagem}"></div>
+
+    <form th:action="@{/cliente/cadastrar}" th:object="${cliente}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+
+        <!-- Campos de Cliente -->
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" th:field="*{nome}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('nome')}" class="text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input type="text" th:field="*{cpf}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('cpf')}" class="text-danger" th:errors="*{cpf}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">RG</label>
+            <input type="text" th:field="*{rg}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('rg')}" class="text-danger" th:errors="*{rg}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+        </div>
+
+        <h2>Endereço</h2>
+
+        <!-- Campos de Endereço -->
+        <div class="mb-3">
+            <label class="form-label">Número do Logradouro</label>
+            <input type="number" th:field="*{endereco.numeroLogradouro}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.numeroLogradouro')}" class="text-danger" th:errors="*{endereco.numeroLogradouro}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nome do Logradouro</label>
+            <input type="text" th:field="*{endereco.nomeLogradouro}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.nomeLogradouro')}" class="text-danger" th:errors="*{endereco.nomeLogradouro}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Bairro</label>
+            <input type="text" th:field="*{endereco.nomeBairro}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.nomeBairro')}" class="text-danger" th:errors="*{endereco.nomeBairro}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Complemento</label>
+            <input type="text" th:field="*{endereco.complementoNumero}" class="form-control">
+            <p th:if="${#fields.hasErrors('endereco.complementoNumero')}" class="text-danger" th:errors="*{endereco.complementoNumero}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CEP</label>
+            <input type="text" th:field="*{endereco.cep}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.cep')}" class="text-danger" th:errors="*{endereco.cep}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Zona</label>
+            <input type="text" th:field="*{endereco.zona}" class="form-control">
+            <p th:if="${#fields.hasErrors('endereco.zona')}" class="text-danger" th:errors="*{endereco.zona}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cidade</label>
+            <input type="text" th:field="*{endereco.nomeCidade}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.nomeCidade')}" class="text-danger" th:errors="*{endereco.nomeCidade}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nome do Estado</label>
+            <input type="text" th:field="*{endereco.nomeEstado}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('endereco.nomeEstado')}" class="text-danger" th:errors="*{endereco.nomeEstado}"></p>
+        </div>
+
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
