@@ -50,10 +50,8 @@ Para rodar a aplicação, siga estas etapas:
      ```bash
      localHost:8080/login
      ```
-
-      ```bash
     usuario: admin | senha: admin
-     ```
+  
 
 ## Documentação
 
