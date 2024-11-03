@@ -50,7 +50,9 @@ Para rodar a aplicação, siga estas etapas:
      ```bash
      localHost:8080/login
      ```
-    usuario: admin | senha: admin
+  
+- para realizar o primeiro acesso favor acessar com os seguinte usuario e senha:
+-   usuario: admin | senha: admin
   
 
 ## Documentação
