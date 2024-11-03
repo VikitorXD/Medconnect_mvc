@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Produto</h1>
+    <div class="alert alert-success" th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
+    </div>
+
+    <form th:action="@{/produto/cadastrar}" th:object="${produto}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" th:field="*{nome}" class="form-control">
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Valor</label>
+            <input type="text" th:field="*{valor}" class="form-control">
+            <p th:if="${#fields.hasErrors('valor')}" class="text text-danger" th:errors="*{valor}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input type="text" th:field="*{marca}" class="form-control">
+            <p th:if="${#fields.hasErrors('marca')}" class="text text-danger" th:errors="*{marca}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <textarea class="form-control" th:field="*{descricao}"></textarea>
+            <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
+        </div>
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
