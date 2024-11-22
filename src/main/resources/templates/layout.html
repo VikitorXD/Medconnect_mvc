@@ -30,7 +30,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">MEDCONNECT</a>
+        <a class="navbar-brand" href="#">ProjetoOasis</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,10 +40,10 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/produto/cadastrar}">Cadastro de Produto</a>
+                    <a class="nav-link" th:href="@{/produto/cadastrar}">Cadastro de Gás</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/produto/listar}">Listagem de Produto</a>
+                    <a class="nav-link" th:href="@{/produto/listar}">Listagem de Gás cadastrado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/cliente/listar}">Lista de Clientes</a>
@@ -65,7 +65,7 @@
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <li class="nav-iem" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>

@@ -15,16 +15,17 @@
     <div class="alert alert-success"
          th:if="${mensagem != null and !#strings.isEmpty(mensagem)}"
          th:text="${mensagem}"></div>
+    <div class="alert alert-danger"
+         th:if="${erro != null and !#strings.isEmpty(erro)}"
+         th:text="${erro}"></div>
 
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Nome</th>
             <th>CPF</th>
-            <th>RG</th>
             <th>Email</th>
-            <th>Data de Nascimento</th>
-            <th>Endereço</th>
+            <th>Endereço Resumido</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -32,21 +33,17 @@
         <tr th:each="cliente : ${clientes}">
             <td th:text="${cliente.nome}"></td>
             <td th:text="${cliente.cpf}"></td>
-            <td th:text="${cliente.rg}"></td>
             <td th:text="${cliente.email}"></td>
             <td>
-                <div th:if="${cliente.endereco != null}">
-                    <p th:text="'Logradouro: ' + ${cliente.endereco.nomeLogradouro}"></p>
-                    <p th:text="'Número: ' + ${cliente.endereco.numeroLogradouro}"></p>
-                    <p th:text="'Complemento: ' + ${cliente.endereco.complementoNumero}"></p>
-                    <p th:text="'Bairro: ' + ${cliente.endereco.nomeBairro}"></p>
-                    <p th:text="'Cidade: ' + ${cliente.endereco.nomeCidade} + ' - ' + ${cliente.endereco.sigla}"></p>
-                    <p th:text="'CEP: ' + ${cliente.endereco.cep}"></p>
-                </div>
+                <span th:if="${cliente.endereco != null}"
+                      th:text="'${cliente.endereco.nomeLogradouro}, ' + ${cliente.endereco.numeroLogradouro} + ' - ' + ${cliente.endereco.nomeBairro} + ', ' + ${cliente.endereco.sigla}">
+                </span>
+                <span th:if="${cliente.endereco == null}">Endereço não cadastrado</span>
             </td>
             <td>
-                <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-outline-primary">Editar</a>
-                <button th:onclick="|clienteId.value = ${cliente.idCliente}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-outline-primary btn-sm">Editar</a>
+                <button th:onclick="|clienteId.value = ${cliente.idCliente}; clienteNome.textContent = '${cliente.nome}'|"
+                        type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Remover
                 </button>
             </td>
@@ -65,7 +62,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Deseja realmente excluir o cliente?
+                    <p>Deseja realmente excluir o cliente <span id="clienteNome"></span>?</p>
                 </div>
                 <div class="modal-footer">
                     <form th:action="@{/cliente/remover}" method="post">

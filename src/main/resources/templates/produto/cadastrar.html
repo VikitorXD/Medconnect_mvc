@@ -8,7 +8,7 @@
 </head>
 <body>
 <div layout:fragment="conteudo">
-    <h1>Cadastro de Produto</h1>
+    <h1>Cadastro de Gás</h1>
     <div class="alert alert-success" th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
     </div>
 
@@ -17,22 +17,22 @@
             <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Nome</label>
+            <label class="form-label">Nome do Gás</label>
             <input type="text" th:field="*{nome}" class="form-control">
             <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Valor</label>
+            <label class="form-label">Valor do Litro</label>
             <input type="text" th:field="*{valor}" class="form-control">
             <p th:if="${#fields.hasErrors('valor')}" class="text text-danger" th:errors="*{valor}"></p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Marca</label>
+            <label class="form-label">Nome da Região</label>
             <input type="text" th:field="*{marca}" class="form-control">
             <p th:if="${#fields.hasErrors('marca')}" class="text text-danger" th:errors="*{marca}"></p>
         </div>
         <div class="mb-3">
-            <label class="form-label">Descrição</label>
+            <label class="form-label">Descrição do Gás</label>
             <textarea class="form-control" th:field="*{descricao}"></textarea>
             <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
         </div>
